@@ -1,24 +1,27 @@
 ﻿@page "/"
-@inject IJSRuntime jsRuntime
 
-<div>Markdown editor in C#</div>
-
-<div style="width: 49%; height: 100%; float: left;">
-    <MarkdownEditorComponent HtmlChanged="HtmlChanged" />
+<h2>What is Blazor?</h2>
+<p>Blazor is a single-page app framework for building interactive client-side Web apps with .NET. Blazor uses open web standards without plugins or code transpilation. Blazor works in all modern web browsers, including mobile browsers.</p>
+<p>Source: <a href="https://www.hanselman.com/blog/WhatIsBlazorAndWhatIsRazorComponents.aspx">https://www.hanselman.com/blog/WhatIsBlazorAndWhatIsRazorComponents.aspx</a></p>
+<p>Blazor is officially supported by Microsoft, I anticipate a full release with .NET 5.0 in late 2020.</p>
+<br/>
+<h2>Why Blazor?</h2>
+<p>We already have javascript, typescript, React and node.js, why do we care about Blazor?</p>
+<div>
+    <ul>
+        <li>Common .NET code base for browser and server</li>
+        <li>Leverage existing .NET frameworks and business logic in the browser</li>
+        <li>Unity, Xamarin (.NET core everywhere)</li>
+    </ul>
 </div>
-
-<div id="html" style="width: 49%; padding-left: 1%; float: left;">@((MarkupString)Html)</div>
-
-@functions
-{
-    public string Html { get; private set; }
-
-    public async Task HtmlChanged(string html)
-    {
-        Html = html;
-        if (html.Trim() == "<p>42</p>")
-        {
-            await jsRuntime.InvokeAsync<string>("alert", "Answer to the Ultimate Question of Life, the Universe, and Everything (42)");
-        }
-    }
-}
+<br />
+<h2>Client or Server Mode</h2>
+<p>Blazor can run completely in the browser (client mode), or via controllers (server mode). In server mode, a web socket is used to stream pages and models to the client.</p>
+<p>This demo is using client mode, which was still in preview as of Dec. 2019.</p>
+<br />
+<h2>Caveats</h2>
+<p>Blazor is still quite new, having been only first shown off in late 2017. Things like syntax highlighting are a little flaky, and strange warnings or errors may appear that are not actually real.</p>
+<br/>
+<h2>Disclaimer</h2>
+<p>I am not claiming that Blazor should replace native code-bases, node.js and/or React.</p>
+<br />

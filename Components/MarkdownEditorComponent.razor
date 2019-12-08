@@ -2,10 +2,11 @@
 
 @functions
 {
-    private readonly MarkdownSharp.Markdown marker = new MarkdownSharp.Markdown();
+    private readonly Ganss.XSS.HtmlSanitizer sanitizer = new Ganss.XSS.HtmlSanitizer();
     private Task ContentChanged(ChangeEventArgs markdown)
     {
-        string html = marker.Transform(markdown.Value.ToString());
+        string html = Markdig.Markdown.ToHtml(markdown.Value.ToString());
+        html = sanitizer.Sanitize(html);
         return HtmlChanged.InvokeAsync(html);
     }
 

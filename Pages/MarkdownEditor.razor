@@ -1,0 +1,24 @@
+﻿@page "/markdowneditor"
+@inject IJSRuntime jsRuntime
+
+<div>Markdown editor in C#</div>
+
+<div style="width: 49%; height: 100%; float: left;">
+    <MarkdownEditorComponent HtmlChanged="HtmlChanged" />
+</div>
+
+<div id="html" style="width: 49%; padding-left: 1%; float: left;">@((MarkupString)Html)</div>
+
+@functions
+{
+    public string Html { get; private set; }
+
+    public async Task HtmlChanged(string html)
+    {
+        Html = html;
+        if (html.Trim() == "<p>42</p>")
+        {
+            await jsRuntime.InvokeAsync<string>("alert", "Answer to the Ultimate Question of Life, the Universe, and Everything (42)");
+        }
+    }
+}
