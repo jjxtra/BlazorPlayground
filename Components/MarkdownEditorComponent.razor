@@ -1,0 +1,14 @@
+﻿<textarea id="editor" style="width: 100%; height: 100%;" @oninput="ContentChanged"></textarea>
+
+@functions
+{
+    private readonly MarkdownSharp.Markdown marker = new MarkdownSharp.Markdown();
+    private Task ContentChanged(ChangeEventArgs markdown)
+    {
+        string html = marker.Transform(markdown.Value.ToString());
+        return HtmlChanged.InvokeAsync(html);
+    }
+
+    [Parameter]
+    public EventCallback<string> HtmlChanged { get; set; }
+}
