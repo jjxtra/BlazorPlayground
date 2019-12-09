@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Blazor.Hosting;
+﻿using System;
+using Microsoft.AspNetCore.Blazor.Hosting;
 
 namespace BlazorPlayground
 {
@@ -6,7 +7,14 @@ namespace BlazorPlayground
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            try
+            {
+                CreateHostBuilder(args).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         public static IWebAssemblyHostBuilder CreateHostBuilder(string[] args) =>

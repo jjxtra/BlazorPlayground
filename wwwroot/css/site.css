@@ -42,6 +42,7 @@ app {
     height: 2.0rem;
     display: flex;
     align-items: center;
+    background-color: #000000;
 }
 
 .main {
